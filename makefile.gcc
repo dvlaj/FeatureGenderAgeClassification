@@ -1,0 +1,32 @@
+#
+#	makefile for FeatureGenderAgeClassification
+#	Author: Damjan Vlaj
+#
+#   Copyright (c) 2022 DSP-LAB, UM-FERI, Maribor, Slovenia
+#
+
+# For GCC compiler
+CC = g++
+LFLAG = -lm
+CFLAGS = -Wall -O3 -m32
+
+PROGRAM = FeatureGenderAgeClassification
+
+# Objects
+OBJS	      = FeatureGenderAgeClassification.o \
+		hmm.o
+
+# Implicit Rules
+.cpp.o:
+	$(CC) $(CFLAGS)  -c  $<
+
+all:    $(PROGRAM)
+
+# Explicit Rules
+$(PROGRAM):    $(OBJS)
+	$(CC) $(LFLAG) -o $(PROGRAM) $(CFLAGS) $(OBJS)
+
+# Individual File Dependencies
+hmm.o:   hmm.h
+FeatureGenderAgeClassification.o: FeatureGenderAgeClassification.h hmm.h
+

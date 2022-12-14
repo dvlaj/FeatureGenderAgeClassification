@@ -1,0 +1,34 @@
+Usage of the program: 
+
+   Usage: FeatureGenderAgeClassifcation [options] pitchCountFile gmmFile featureFile mlfFile
+
+   Options:
+      -dk   format        Decision kind format:                                                   (prob)
+                          prob                        - probability
+                          pitchWeight                 - pitch weight
+                          pitchCount                  - pitch count
+                          probPitchWeight             - probability with pitch weight
+                          probPitchCount              - probability with pitch count
+                          probPitchCountPitchWeight   - probability with pitch count and weight
+      -pp   index         index of the pitch position in feature file                                (0)
+      -diff value         difference between probabilities counters                                  (5)
+      -pTh  threshold     threshold of the pitch value                                             (4.0)
+      -norm               normalise weights                                                      (FALSE)
+
+   (C)DSPLAB 2022 - Version 1.0
+
+Needed files:
+   - pitchCountFile: input file containing a counter of the pitch value at a specified frequency (./test_files/pitchCount.lis)
+   - gmmFile: input  file containing Gaussian Mixture Models (./test_files/gmm.mix32.it3)
+   - featureFile: input  file containing features (HTK) (./test_files/wcjz157652a.mfc)
+   - mlfFile: output file containing classified gander or age in the MLF format (HTK) (./test_files/wcjz157652a.mlf)
+   
+Example of usage:
+
+- the content of the feature vector in HTK format
+   HList -C test_files/config -h -i 13 ./test_files/wcjz157652a.mfc
+   
+- feature gender and age classifcation
+   FeatureGenderAgeClassification -dk probPitchCountPitchWeight ./test_files/pitchCount.lis ./test_files/gmm.mix32.it3 ./test_files/wcjz157652a.mfc ./test_files/wcjz157652a.mlf
+   
+   
